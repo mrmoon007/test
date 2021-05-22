@@ -28,14 +28,14 @@
 
                     </tr>
                     </thead>
-                    <tfoot>
+                    {{-- <tfoot>
                     <tr>
                         <th>#</th>
                         <th>Title</th>
                         <th>Description</th>
                         <th>Action</th>
                     </tr>
-                    </tfoot>
+                    </tfoot> --}}
                     <tbody>
                     @foreach($variants as $key=>$variant)
                         <tr>
