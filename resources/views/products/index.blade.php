@@ -8,14 +8,17 @@
 
 
 <div class="card">
-    <form action="" method="get" class="card-header">
+    <form action="{{ route('product.search') }}" method="get" class="card-header">
         <div class="form-row justify-content-between">
             <div class="col-md-2">
                 <input type="text" name="title" placeholder="Product Title" class="form-control">
             </div>
             <div class="col-md-2">
                 <select name="variant" id="" class="form-control">
-
+                    <option>Select</option>
+                    <option value="red" >Red</option>
+                    <option value="green" >Green</option>
+                    <option value="blue" >Blue</option>
                 </select>
             </div>
 
@@ -67,8 +70,8 @@
                                 </dt>
                                 <dd class="col-sm-9">
                                     <dl class="row mb-0">
-                                        <dt class="col-sm-4 pb-0">Price : {{ $items->product_viriant_price->price }}</dt>
-                                        <dd class="col-sm-8 pb-0">InStock : {{ $items->product_viriant_price->stock }}</dd>
+                                        <dt class="col-sm-4 pb-0">Price : {{ $items->product_viriant_price?$items->product_viriant_price->price:'' }}</dt>
+                                        <dd class="col-sm-8 pb-0">InStock : {{ $items->product_viriant_price?$items->product_viriant_price->stock: '' }}</dd>
                                     </dl>
                                 </dd>
                                 @endforeach

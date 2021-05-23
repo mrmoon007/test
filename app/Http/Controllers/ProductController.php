@@ -89,4 +89,59 @@ class ProductController extends Controller
     {
         //
     }
+
+    public function search(Request $request)
+    {
+        
+        $title=$request->title;
+        $variant=$request->variant;
+        $price_from=$request->price_from;
+        $price_to=$request->price_to;
+        $date=$request->date;
+        //return $data=$request->all();
+
+        $result=Product::
+                // with('product_variant','product_variant.product_viriant_price')->query();
+                join('product_variants as pv','products.id','pv.product_id')
+                ->join('product_variant_prices as pvp','products.id','pvp.product_id')
+                //  ->get();
+                ->select(
+                    'products.id',
+                    'products.title',
+                    'pv.id',
+                    'pv.variant',
+                    'pvp.price',
+                    
+                );
+        if(!empty($title)){
+            $result=$result->where('products.title',$title);
+        }
+        // $data=$result->get();
+        //   return $data;
+        if(!empty($variant)){
+            $result=$result->where('pv.variant',$variant);
+        }
+        //  $data=$result->get();
+        //  return $data;
+        if(!empty($price_from && $price_to )){
+
+            $result=$result->where('price','<=',$price_to);
+            $result=$result->where('price','>=',$price_from);
+
+
+            // ->whereBetween('price', [$pricefrom, $priceto]);
+
+            // ->where('price',$price);
+        }
+        // if(!empty($date)){
+        //     $result=$result->where('created_at',$date);
+
+        //     // ->where('expiry_date',$expiry_date);
+        // }
+
+
+      return  $result=$result->paginate(5);
+        //return view('search',compact('result'));
+
+    }
 }
