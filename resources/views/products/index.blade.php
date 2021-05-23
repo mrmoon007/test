@@ -11,15 +11,16 @@
     <form action="{{ route('product.search') }}" method="get" class="card-header">
         <div class="form-row justify-content-between">
             <div class="col-md-2">
-                <input type="text" name="title" placeholder="Product Title" class="form-control">
+                <input type="search" name="title" placeholder="Product Title" class="form-control">
             </div>
             <div class="col-md-2">
                 <select name="variant" id="" class="form-control">
-                    <option>Select</option>
+                    <option ></option>
                     <option value="red" >Red</option>
                     <option value="green" >Green</option>
                     <option value="blue" >Blue</option>
                 </select>
+                
             </div>
 
             <div class="col-md-3">

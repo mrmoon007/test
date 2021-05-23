@@ -114,7 +114,9 @@ class ProductController extends Controller
                     
                 );
         if(!empty($title)){
-            $result=$result->where('products.title',$title);
+            //$result=$result->where('products.title',$title);
+            $result=$result->where('products.title', 'LIKE', '%' . $title . '%');
+
         }
         // $data=$result->get();
         //   return $data;
