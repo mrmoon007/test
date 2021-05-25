@@ -108,6 +108,7 @@ class ProductController extends Controller
                 ->select(
                     'products.id',
                     'products.title',
+                    'products.created_at',
                     'pv.id',
                     'pv.variant',
                     'pvp.price',
@@ -135,11 +136,11 @@ class ProductController extends Controller
 
             // ->where('price',$price);
         }
-        // if(!empty($date)){
-        //     $result=$result->where('created_at',$date);
-
-        //     // ->where('expiry_date',$expiry_date);
-        // }
+        //$newDate = \Carbon\Carbon::parse($result->created_at)->format('Y/m/d');
+        if(!empty($date)){
+            $result=$result->where('products.created_at', 'LIKE', '%' . $date . '%');//('created_at',$date);
+            
+        }
 
 
       return  $result=$result->paginate(5);
